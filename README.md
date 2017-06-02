@@ -23,3 +23,4 @@ fi
 
 ### Changelog
 * v0.1 - January 2012: first time I share a snippet on stackoverflow
+* v0.2 - January 2012: contribution by [johnjohndoe](https://gist.github.com/johnjohndoe)
