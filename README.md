@@ -1,6 +1,6 @@
 # beautifulSVN
 ##### Adds color to the output of svn commands, such like `svn status`, `svn update`, `svn diff myfile`. See [#Usage](#usage)
-##### The original version of the script was posted by [me](https://stackoverflow.com/users/1077650/4wk) on [stack*overflow*](https://stackoverflow.com/questions/8786400/svn-add-colors-on-command-line-svn-with-awk-in-bash)
+##### The original version of the script was posted by me on [stack*overflow*](https://stackoverflow.com/questions/8786400/svn-add-colors-on-command-line-svn-with-awk-in-bash)
 
 ---
 
@@ -22,5 +22,11 @@ fi
 ```
 
 ### Changelog
-* v0.1 - January 2012: first time I share a snippet on stackoverflow
-* v0.2 - January 2012: contribution by [johnjohndoe](https://gist.github.com/johnjohndoe)
+* v0.1 - January 2012: first time I share this snippet on stackoverflow
+* v0.2 - January 2012: small contribution by [johnjohndoe](https://gist.github.com/johnjohndoe)
+* v1.0 - From 2012 to 2017, I've made many improvements leaded by a daily usage of SVN in my company. And obviously, I didn't write them down :dash:. However, off the top of my head:
+  * Specific handling for some sub-command, in particular svn prompts when the `svn update` leads to conflicts
+  * Fixing the file sorting for `svn status` due to non-printable char
+  * More svn sub-commands handled, such as `svn diff` now in color
+	* Summary of conflicted / merged / missing files for more clearness
+  * Script splits in two functions to make it smoother
