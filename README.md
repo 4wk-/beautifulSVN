@@ -28,5 +28,5 @@ fi
   * Specific handling for some sub-command, in particular svn prompts when the `svn update` leads to conflicts
   * Fixing the file sorting for `svn status` due to non-printable char
   * More svn sub-commands handled, such as `svn diff` now in color
-	* Summary of conflicted / merged / missing files for more clearness
+  * Summary of conflicted / merged / missing files for more clearness
   * Script splits in two functions to make it smoother
