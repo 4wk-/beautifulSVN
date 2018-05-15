@@ -30,3 +30,4 @@ fi
   * More svn sub-commands handled, such as `svn diff` now in color
   * Summary of conflicted / merged / missing files for more clearness
   * Script splits in two functions to make it smoother
+* v1.1 - May 2018: minor changes
