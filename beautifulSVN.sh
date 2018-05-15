@@ -3,24 +3,25 @@
 
 # @tl;dr    Allow colored output for most svn commands    
 # @desc     This script is now split in 2 functions. 
-# 					1) The first one, svn() allows us to make specific process for some svn subcommands, such as svn commit or svn update
-# 					2) The second one, beautifulSVN(), manage the colored output. We Pipe svn through awk to colorize the output.
+# 	    1) The first one, svn() allows us to make specific process for some svn subcommands, such as svn commit or svn update
+# 	    2) The second one, beautifulSVN(), manage the colored output. We Pipe svn through awk to colorize the output.
 # @author   4wk- (https://stackoverflow.com/users/1077650/4wk)
-# @version  1.0, stable
+# @version  1.1, stable
 # 
 svn () {
-  # IMPORTANT : if it's an update, we have to prevent SVN to prompt in case of conflict
+  # IMPORTANT: if it's an update, we have to prevent SVN to prompt in case of conflict
   # svn indeed prompts things like: 
-	# 	Conflict discovered in 'test.txt'.
-	# 	Select: (p) postpone, (df) diff-full, (e) edit,
-	# 	        (mc) mine-conflict, (tc) theirs-conflict,
-	# 					(s) show all options:
+  # 	Conflict discovered in 'test.txt'.
+  # 	Select: (p) postpone, (df) diff-full, (e) edit,
+  # 	        (mc) mine-conflict, (tc) theirs-conflict,
+  # 		(s) show all options:
+  # then open a text editor.
   if [ "x$1" == "xup" ] || [ "x$1" == "xupdate" ]; then
     shift 1;
-		# NB: --accept postpone is not enough to avoid all svn prompts
+    # NB: --accept postpone is not enough to avoid all svn prompts
     command svn update --non-interactive $@ | beautifulSVN;
-	# For svn status, we want to fix the messed sort brought by colors
   elif [ "x$1" = "xst" ] || [ "x$1" = "xstatus" ]; then
+    # For svn status, we want to fix the messed sort brought by colors
     command svn $@ | LC_ALL=C sort | beautifulSVN;
   elif [ "x$1" = "xstat" ] \
     || [ "x$1" = "xadd" ] \
