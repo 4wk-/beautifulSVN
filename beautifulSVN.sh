@@ -1,5 +1,4 @@
-#!/bin/bash
- 
+#!/bin/sh
 
 # @tl;dr    Allow colored output for most svn commands    
 # @desc     This script is now split in 2 functions. 
@@ -16,7 +15,7 @@ svn () {
   # 	        (mc) mine-conflict, (tc) theirs-conflict,
   # 		(s) show all options:
   # then open a text editor.
-  if [ "x$1" == "xup" ] || [ "x$1" == "xupdate" ]; then
+  if [ "x$1" = "xup" ] || [ "x$1" = "xupdate" ]; then
     shift 1;
     # NB: --accept postpone is not enough to avoid all svn prompts
     command svn update --non-interactive "$@" | beautifulSVN;
