@@ -15,6 +15,11 @@ svn () {
   # 	        (mc) mine-conflict, (tc) theirs-conflict,
   # 		(s) show all options:
   # then open a text editor.
+  if [ $# -eq 0 ]; then
+    command svn;
+    return;
+  fi
+
   if [ "x$1" = "xup" ] || [ "x$1" = "xupdate" ]; then
     shift 1;
     # NB: --accept postpone is not enough to avoid all svn prompts
