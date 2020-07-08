@@ -19,10 +19,10 @@ svn () {
   if [ "x$1" == "xup" ] || [ "x$1" == "xupdate" ]; then
     shift 1;
     # NB: --accept postpone is not enough to avoid all svn prompts
-    command svn update --non-interactive $@ | beautifulSVN;
+    command svn update --non-interactive "$@" | beautifulSVN;
   elif [ "x$1" = "xst" ] || [ "x$1" = "xstatus" ]; then
     # For svn status, we want to fix the messed sort brought by colors
-    command svn $@ | LC_ALL=C sort | beautifulSVN;
+    command svn "$@" | LC_ALL=C sort | beautifulSVN;
   elif [ "x$1" = "xstat" ] \
     || [ "x$1" = "xadd" ] \
     || [ "x$1" = "xdiff" ] \
@@ -31,7 +31,7 @@ svn () {
     || [ "x$1" = "xrm" ] || [ "x$1" = "xremove" ] \
     || [ "x$1" = "xmv" ] || [ "x$1" = "xmove" ] \
     || [ "x$1" = "xren" ] || [ "x$1" = "xrename" ]; then
-    command svn $@ $beautifulSVN | beautifulSVN;
+    command svn "$@" | beautifulSVN;
   else
     command svn "$@";
   fi
