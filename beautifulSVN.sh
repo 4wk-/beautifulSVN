@@ -1,5 +1,4 @@
-#!/bin/bash
- 
+#!/bin/sh
 
 # @tl;dr    Allow colored output for most svn commands    
 # @desc     This script is now split in 2 functions. 
@@ -16,22 +15,26 @@ svn () {
   # 	        (mc) mine-conflict, (tc) theirs-conflict,
   # 		(s) show all options:
   # then open a text editor.
-  if [ "x$1" == "xup" ] || [ "x$1" == "xupdate" ]; then
+  if [ $# -eq 0 ]; then
+    command svn;
+    return;
+  fi
+
+  if [ "x$1" = "xup" ] || [ "x$1" = "xupdate" ]; then
     shift 1;
     # NB: --accept postpone is not enough to avoid all svn prompts
-    command svn update --non-interactive $@ | beautifulSVN;
-  elif [ "x$1" = "xst" ] || [ "x$1" = "xstatus" ]; then
+    command svn update --non-interactive "$@" | beautifulSVN;
+  elif [ "x$1" = "xst" ] || [ "x$1" = "xstat" ] || [ "x$1" = "xstatus" ]; then
     # For svn status, we want to fix the messed sort brought by colors
-    command svn $@ | LC_ALL=C sort | beautifulSVN;
-  elif [ "x$1" = "xstat" ] \
-    || [ "x$1" = "xadd" ] \
-    || [ "x$1" = "xdiff" ] \
+    command svn "$@" | LC_ALL=C sort | beautifulSVN;
+  elif [ "x$1" = "xadd" ] \
+    || [ "x$1" = "xdiff" ] || [ "x$1" = "xdi" ] \
     || [ "x$1" = "xco" ] || [ "x$1" = "xcheckout" ] \
     || [ "x$1" = "xdel" ] || [ "x$1" = "xdelete" ] \
     || [ "x$1" = "xrm" ] || [ "x$1" = "xremove" ] \
     || [ "x$1" = "xmv" ] || [ "x$1" = "xmove" ] \
     || [ "x$1" = "xren" ] || [ "x$1" = "xrename" ]; then
-    command svn $@ $beautifulSVN | beautifulSVN;
+    command svn "$@" | beautifulSVN;
   else
     command svn "$@";
   fi
